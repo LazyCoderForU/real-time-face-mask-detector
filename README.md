@@ -73,7 +73,7 @@ The model achieves high accuracy in detecting masks and provides real-time predi
 - 📈 Validation Accuracy
 
 ## 🖼️ Screenshots
-![Mask Detection Example](https://via.placeholder.com/600x400?text=Mask+Detection+Example)
+![Mask Detection Example](https://www.google.com/imgres?q=face%20mask%20detection&imgurl=https%3A%2F%2Fwww.scielo.org.mx%2Fimg%2Frevistas%2Frmib%2Fv42n2%2F%2F2395-9126-rmib-42-02-1176-gf5.gif&imgrefurl=https%3A%2F%2Fwww.scielo.org.mx%2Fscielo.php%3Fscript%3Dsci_arttext%26pid%3DS0188-95322021000200109&docid=R3YfA23FmF6s7M&tbnid=-y1zdHOhqgBQ-M&vet=12ahUKEwiiq4rgkO2MAxUixzgGHSKPPb0QM3oECHIQAA..i&w=1262&h=516&hcb=2&ved=2ahUKEwiiq4rgkO2MAxUixzgGHSKPPb0QM3oECHIQAA)
 
 ## 🙏 Acknowledgments
 This project is inspired by the need for mask detection during the COVID-19 pandemic. It leverages the power of deep learning and computer vision to provide a practical solution.
