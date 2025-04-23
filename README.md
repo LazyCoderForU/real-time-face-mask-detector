@@ -83,7 +83,7 @@ This project is licensed under the MIT License. Feel free to use and modify it a
 
 ## Contact
 For any questions or feedback, feel free to reach out:
-- **Email**: your_email@example.com
-- **GitHub**: [Your GitHub Profile](https://github.com/your-profile)
+- **Email**: brajeshguptaa1@example.com
+- **GitHub**: [LazyCoderForU](https://github.com/LazyCoderForU)
 
 Happy coding!
