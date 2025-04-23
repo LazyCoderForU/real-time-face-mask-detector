@@ -141,8 +141,8 @@ def detect_and_predict_mask(frame, face_nn, mask_nn):
 
 
 
-t = "archive/architecture.txt"
-w = "archive/weights.caffemodel"
+t = "architecture.txt"
+w = "weights.caffemodel"
 
 face_nn = cv2.dnn.readNet(t, w)
 mask_nn = load_model("mask_detector.h5")
