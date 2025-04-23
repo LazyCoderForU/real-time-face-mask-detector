@@ -56,6 +56,7 @@ for category in CATEGORIES:
 # perform one-hot encoding on the labels
 lb = LabelEncoder()
 labels = lb.fit_transform(labels)
+labels = to_categorical(labels)  # Convert labels to one-hot encoding
 
 # only with np array deep learning models work
 
@@ -130,8 +131,7 @@ for layer in baseModel.layers:
 
 # compile our model
 print("[INFO] compiling model...")
-opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
-# adam is default for image prediction 
+opt = Adam(learning_rate=INIT_LR, decay=INIT_LR / EPOCHS)  # Use 'learning_rate' instead of 'lr'
 
 
 model.compile(loss="binary_crossentropy", optimizer=opt,
