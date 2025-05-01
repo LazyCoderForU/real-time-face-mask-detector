@@ -13,7 +13,7 @@ from imutils.video import VideoStream
 def detect_and_predict_mask(frame, face_nn, mask_nn):
     
     
-	(h, w) = frame.shape[:2]    #getting first 2 value ie, height and weidth of frame 
+	(h, w) = frame.shape[:2]    #getting first 2 value ie, height and width of frame 
  
 	blob = cv2.dnn.blobFromImage(frame, 1.0, (224, 224),(104.0, 177.0, 123.0))  
  #dataset requires (104.0, 177.0, 123.0) mean rgb value to subtract from current frame for better prediction
@@ -25,13 +25,6 @@ def detect_and_predict_mask(frame, face_nn, mask_nn):
 	Array_faces = []   
 	Array_locs = []
 	Array_preds = []
-
-
-
-
-
-
-
 
 
 #2
@@ -53,15 +46,6 @@ def detect_and_predict_mask(frame, face_nn, mask_nn):
 
 			Array_faces.append(face)
 			Array_locs.append((startX, startY, endX, endY))
-
-
-
-
-
-
-
-
-
 
 
 
@@ -121,24 +105,6 @@ def detect_and_predict_mask(frame, face_nn, mask_nn):
 # prototxt_Path = "Face-Mask-Detection-master/face_detector/deploy.prototxt"
 # weightsPath_caffemodel = "Face-Mask-Detection-master/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 #4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 t = "architecture.txt"

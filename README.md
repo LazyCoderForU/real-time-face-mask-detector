@@ -1,89 +1,80 @@
-# 😷 Real-Time Face Mask Detection
+# Real-Time Face Mask Detector
 
-This project implements a real-time face mask detection system using deep learning and computer vision. It detects whether a person is wearing a mask or not using a webcam feed.
+## 📝 Description
+The Real-Time Face Mask Detector is a computer vision project that detects faces in real-time and determines whether the person is wearing a mask or not. It uses deep learning models for face detection and mask classification.
 
-## ✨ Features
-- 🕒 Real-time face detection and mask classification.
-- ⚡ Utilizes MobileNetV2 for efficient and lightweight deep learning.
-- 📹 Supports live video streams from a webcam.
-- ✅ Provides visual feedback with bounding boxes and labels.
+### Key Features
+- Real-time face detection using OpenCV's DNN module.
+- Mask detection using a pre-trained deep learning model.
+- Displays bounding boxes and labels ("Mask" or "No Mask") on detected faces.
 
-## 📋 Requirements
-To run this project, ensure you have the following dependencies installed:
+## 🚀 Installation
 
-```plaintext
-keras==2.11.0
-numpy==1.23.5
-matplotlib==3.7.1
-scikit-learn==1.2.2
-imutils==0.5.4
-opencv-python==4.8.0.74
-tensorflow==2.11.0
-```
+### Prerequisites
+- Python 3.7 or higher
+- pip (Python package manager)
 
-You can install all dependencies using the following command:
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/real-time-face-mask-detector.git
+   cd real-time-face-mask-detector
+   ```
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## 📦 Usage
+To run the real-time face mask detection:
 ```bash
-pip install -r requirements.txt
+python detect.py
 ```
 
-## 📂 Dataset
-The project uses a dataset containing images of people with and without masks. The dataset is organized into two categories:
-- `with_mask` 😷
-- `without_mask` 😮
+### Expected Output
+- A video stream window will open, showing the real-time detection of faces with labels indicating "Mask" or "No Mask".
+- Press the `s` key to stop the video stream.
 
-Ensure the dataset is placed in the `dataset` directory before training the model.
+## 🖼️ Screenshots / Demo
+![Demo Screenshot](path/to/screenshot.png)
 
-## 🚀 How to Run
+## 🧠 Tech Stack / Built With
+- Python
+- OpenCV
+- Keras
+- NumPy
+- imutils
 
-### 1. 🏋️ Train the Model
-To train the face mask detection model, run the `train_mask_detector.py` script:
-```bash
-python train_mask_detector.py
+## 📂 Project Structure
 ```
-This will train the model and save it as `mask_detector.model`.
-
-### 2. 🎥 Detect Masks in Real-Time
-To start real-time face mask detection, run the `detect_mask_video.py` script:
-```bash
-python detect_mask_video.py
-```
-This will open a webcam feed and display bounding boxes around detected faces with labels indicating "Mask" or "No Mask".
-
-### 3. 🛑 Exit the Application
-Press the `s` key to stop the webcam feed and exit the application.
-
-## 📁 File Structure
-```
-Real time face mask detection by me/
-├── dataset/                     # Dataset directory
-│   ├── with_mask/               # Images of people wearing masks
-│   ├── without_mask/            # Images of people without masks
-├── train_mask_detector.py       # Script to train the mask detection model
-├── detect_mask_video.py         # Script for real-time mask detection
-├── requirements.txt             # List of dependencies
-├── mask_detector.model          # Trained model (generated after training)
-├── README.md                    # Project documentation
+real-time-face-mask-detector/
+├── dataset/
+│   ├── with_mask/
+│   └── without_mask/
+├── detect.py
+├── train.py
+├── train_mask_detector.py
+├── mask_detector.h5
+├── requirements.txt
+├── README.md
+└── ...
 ```
 
-## 📊 Results
-The model achieves high accuracy in detecting masks and provides real-time predictions with minimal latency. The following metrics are displayed during training:
-- 📉 Training Loss
-- 📉 Validation Loss
-- 📈 Training Accuracy
-- 📈 Validation Accuracy
+## 🙌 Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch-name`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch-name`).
+5. Open a pull request.
 
-## 🖼️ Screenshots
-![Mask Detection Example](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFhOvczMsbjIVGfs05XaouBDaWOlrjYvhpAmOeVY9jLv09ORGLU54C4smRalQdn53F7Ac&usqp=CAU)
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## 🙏 Acknowledgments
-This project is inspired by the need for mask detection during the COVID-19 pandemic. It leverages the power of deep learning and computer vision to provide a practical solution.
+## 👨‍💻 Author
+- Your Name
+- [GitHub Profile](https://github.com/yourusername)
+- [LinkedIn Profile](https://linkedin.com/in/yourprofile)
 
-## 📜 License
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
-
-## 📬 Contact
-For any questions or feedback, feel free to reach out:
-- **📧 Email**: brajeshguptaa1@example.com
-- **🐙 GitHub**: [LazyCoderForU](https://github.com/your-profile)
-
-Happy coding! 🚀
+## 🌐 Links
+- [Project Repository](https://github.com/yourusername/real-time-face-mask-detector)
