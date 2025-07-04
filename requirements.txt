@@ -1,7 +1,23 @@
-keras==2.11.0
-numpy==1.23.5
-matplotlib==3.7.1
-scikit-learn==1.2.2
-imutils==0.5.4
-opencv-python==4.8.0.74
+# Deep Learning Framework
 tensorflow==2.11.0
+keras==2.11.0
+
+# Computer Vision and Image Processing
+opencv-python==4.8.0.74
+imutils==0.5.4
+
+# Data Science and Machine Learning
+numpy==1.23.5
+scikit-learn==1.2.2
+
+# Visualization
+matplotlib==3.7.1
+
+# Installation Tips:
+# If you encounter timeout errors, try:
+# 1. pip install --timeout=300 -r requirements.txt
+# 2. pip install --no-cache-dir -r requirements.txt
+# 3. Install TensorFlow separately: pip install tensorflow==2.11.0 --timeout=300
+# 4. Or use conda: conda install tensorflow=2.11.0
+
+

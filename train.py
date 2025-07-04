@@ -1,6 +1,3 @@
-# -----------------------------------------------
-# 1. Importing Required Libraries and Packages
-# -----------------------------------------------
 import keras
 import os
 import numpy as np
@@ -10,25 +7,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from imutils import paths 
 from keras.preprocessing.image import ImageDataGenerator
-
 from keras.applications import MobileNetV2
 from keras.layers import AveragePooling2D, Dropout, Flatten, Dense, Input
 from keras.models import Model
 from keras.optimizers import Adam
-from keras.applications.mobilenet_v3 import preprocess_input
+from keras.applications.mobilenet_v2 import preprocess_input
 from keras.utils import img_to_array, load_img, to_categorical
 from sklearn.preprocessing import LabelEncoder
 
-# -----------------------------------------------
-# 2. Setting Up Hyperparameters
-# -----------------------------------------------
-INIT_LR = 1e-4    # Initial learning rate
-EPOCHS = 30       # Number of training epochs
-BS = 64           # Batch size
+# Hyperparameters
+INIT_LR = 1e-4
+EPOCHS = 30
+BS = 64
 
-# -----------------------------------------------
-# 3. Preparing Dataset and Loading Images
-# -----------------------------------------------
+# Dataset configuration
 DIRECTORY = "dataset"
 CATEGORIES = ["with_mask", "without_mask"]
 
@@ -36,7 +28,7 @@ print("[INFO] loading images...")
 data = []
 labels = []
 
-# Load all images and their labels
+# Load images and labels
 for category in CATEGORIES:
 	category_folder_path = os.path.join(DIRECTORY, category)
 	for img in os.listdir(category_folder_path):
@@ -47,23 +39,18 @@ for category in CATEGORIES:
 		data.append(image)
 		labels.append(category)
 
-# -----------------------------------------------
-# 4. Preprocessing Labels (One-Hot Encoding)
-# -----------------------------------------------
+# Preprocess labels
 lb = LabelEncoder()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
 
-# Convert lists to numpy arrays (required for deep learning)
 data = np.array(data)
 labels = np.array(labels)
 
-# Split data into training and testing sets
+# Split data
 (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.20, random_state=42)
 
-# -----------------------------------------------
-# 5. Data Augmentation
-# -----------------------------------------------
+# Data augmentation
 aug = ImageDataGenerator(
 	rotation_range=20,
 	zoom_range=0.15,
@@ -73,13 +60,9 @@ aug = ImageDataGenerator(
 	horizontal_flip=True,
 	fill_mode="nearest")
 
-# -----------------------------------------------
-# 6. Building the Model using MobileNetV2 as Base
-# -----------------------------------------------
-# Load MobileNetV2 (excluding top layers)
+# Build model
 baseModel = MobileNetV2(weights="imagenet", include_top=False, input_tensor=Input(shape=(224, 224, 3)))
 
-# Build the custom head for the model
 headModel = baseModel.output
 headModel = AveragePooling2D(pool_size=(7, 7))(headModel)
 headModel = Flatten(name="flatten")(headModel)
@@ -87,28 +70,19 @@ headModel = Dense(128, activation="relu")(headModel)
 headModel = Dropout(0.5)(headModel)
 headModel = Dense(2, activation="softmax")(headModel)
 
-# Final model connecting base and head
 model = Model(inputs=baseModel.input, outputs=headModel)
 
-# -----------------------------------------------
-# 7. Freezing Base Model Layers
-# -----------------------------------------------
+# Freeze base model layers
 for layer in baseModel.layers:
 	layer.trainable = False
 
-# -----------------------------------------------
-# 8. Compiling the Model
-# -----------------------------------------------
+# Compile model
 print("[INFO] compiling model...")
 opt = Adam(learning_rate=INIT_LR, decay=INIT_LR / EPOCHS)
-
 model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-# -----------------------------------------------
-# 9. Training the Model
-# -----------------------------------------------
+# Train model
 print("[INFO] training head...")
-
 H = model.fit(
 	aug.flow(trainX, trainY, batch_size=BS),
 	steps_per_epoch=len(trainX) // BS,
@@ -116,24 +90,17 @@ H = model.fit(
 	validation_steps=len(testX) // BS,
 	epochs=EPOCHS)
 
-# -----------------------------------------------
-# 10. Evaluating the Model
-# -----------------------------------------------
+# Evaluate model
 print("[INFO] evaluating network...")
 predIdxs = model.predict(testX, batch_size=BS)
 predIdxs = np.argmax(predIdxs, axis=1)
-
 print(classification_report(testY.argmax(axis=1), predIdxs, target_names=lb.classes_))
 
-# -----------------------------------------------
-# 11. Saving the Trained Model
-# -----------------------------------------------
+# Save model
 print("[INFO] saving mask detector model...")
 model.save("mask_detector.model", save_format="h5")
 
-# -----------------------------------------------
-# 12. Plotting Training Loss and Accuracy
-# -----------------------------------------------
+# Plot results
 N = EPOCHS
 plt.style.use("ggplot")
 plt.figure()
@@ -146,12 +113,3 @@ plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend(loc="lower left")
 plt.savefig("plot.png")
-
-# -----------------------------------------------
-# 13. Notes:
-# -----------------------------------------------
-"""
-MobileNetV2 is used because it is lighter and faster to compute compared to a full CNN model, although CNN might achieve slightly better accuracy.
-"""
-
-# Saving model and plotting results for visualization completed.
